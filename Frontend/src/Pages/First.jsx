@@ -1,161 +1,69 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-const First = () => {
-  const navigate = useNavigate();
-
-  const navigateToSignup = () => navigate('/signup');
-  const navigateToLogin = () => navigate('/login');
-
+const first = () => {
   return (
-    <div className="min-h-screen bg-[#E1EACD] flex flex-col relative">
-      {/* Header/Navigation */}
-      <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-[#E1EACD] text-[#2A004E] font-bold shadow-md"
-      >
-        <div className="header-container flex items-center justify-between w-full px-6 py-3 m-0">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="logo"
-          >
-            <img src="/logo.png" alt="Logo" className="max-w-[100px]" />
-          </motion.div>
-          <nav className="nav-links flex space-x-6">
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <Link 
-                to="/about" 
-                className="text-[#8D77AB] text-xl transition-all duration-200 ease-in-out hover:text-[#2A004E] hover:border-b-2 hover:border-[#2A004E]"
-              >
-                About
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <Link 
-                to="/features" 
-                className="text-[#8D77AB] text-xl transition-all duration-200 ease-in-out hover:text-[#2A004E] hover:border-b-2 hover:border-[#2A004E]"
-              >
-                Features
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <Link 
-                to="/contact" 
-                className="text-[#8D77AB] text-xl transition-all duration-200 ease-in-out hover:text-[#2A004E] hover:border-b-2 hover:border-[#2A004E]"
-              >
-                Contact
-              </Link>
-            </motion.div>
-          </nav>
-        </div>
-      </motion.header>
+    <div className="w-full h-screen bg-[#F9F9F9] flex items-center justify-center">
+      <div className="w-full max-w-[90rem] h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
 
-      {/* Main Content */}
-      <main className="flex flex-1 items-center justify-center bg-[#E1EACD]">
-        <div className="max-w-7xl mx-auto px-6 w-full py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text Content */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="space-y-8 text-[#2A004E]"
-            >
-              <motion.h2 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-                className="text-5xl font-extrabold text-left"
-              >
-                Reclaim your time
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
-                className="text-xl font-bold text-left"
-              >
-                Book bus tickets online in just a few clicks
-              </motion.p>
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.4 }}
-                className="flex gap-6"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={navigateToSignup}
-                  className="cta-button py-3 px-6 rounded-full text-xl font-semibold text-[#8D77AB] border-2 border-[#8D77AB] transition-all duration-200 ease-in-out hover:bg-[#2A004E] hover:border-[#2A004E] hover:text-white shadow-lg"
+<div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+  <img src="/logo.jpg" alt="Logo" className="w-20 h-20" />
+  <nav className="flex space-x-6">
+    {['About', 'Features', 'Contact'].map((item) => (
+      <Link
+        key={item}
+        to={`/${item.toLowerCase()}`}
+        className="text-[#7c4585] text-lg font-semibold px-4 py-2 rounded-md transition-all duration-200 hover:bg-[#3d365c] hover:text-white"
+      >
+        {item}
+      </Link>
+    ))}
+  </nav>
+</div>
+
+        
+        <div className="flex flex-1">
+        
+          <div className="w-1/2 p-12 flex flex-col justify-center">
+            <div>
+              <h1 className="text-5xl font-bold text-[#2A004E] mb-4">Reclaim your time</h1>
+              <p className="text-lg text-gray-600 mb-8">
+      Ready to hit the road? Say goodbye to the hassle of long queues and last-minute
+      surprises. With our easy-to-use platform, booking your bus ticket is as simple
+      as a few taps. Discover schedules, check prices, and secure your seat—all in
+      minutes. Travel smart, travel easy.
+    </p>
+
+              <div className="flex space-x-4">
+                <Link
+                  to="/signup"
+                  className="px-6 py-3 rounded-full text-white bg-[#7c4585] shadow-sm transition-all duration-200 hover:bg-[#3d365c] hover:shadow-md"
                 >
                   Get Started
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={navigateToLogin}
-                  className="cta-button py-3 px-6 rounded-full text-xl font-semibold text-[#8D77AB] border-2 border-[#8D77AB] transition-all duration-200 ease-in-out hover:bg-[#2A004E] hover:border-[#2A004E] hover:text-white shadow-lg"
+                </Link>
+                <Link
+                  to="/login"
+                  className="px-6 py-3 rounded-full border border-[#6B3FA0] text-[#7c4585] transition-all duration-200 hover:bg-[#3d365c] hover:text-white hover:shadow-md"
                 >
                   Login
-                </motion.button>
-              </motion.div>
-            </motion.div>
-
-            {/* Right Column - Image */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.6 }}
-              className="image-content flex-1 overflow-hidden relative"
-            >
-              <motion.img
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1.15 }}
-                transition={{ 
-                  duration: 20,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear"
-                }}
-                src="/home-image.png"
-                alt="Home Image"
-                className="w-[200%] h-auto rounded-lg object-cover shadow-xl transform hover:scale-105 transition-transform duration-700"
-              />
-            </motion.div>
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
-      </main>
 
-      {/* Footer */}
-      <motion.footer 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="py-6 text-center z-10"
-      >
-        <p className="text-sm text-[#2A004E] font-light tracking-wide">
-          © 2024 Elite Roadways. All Rights Reserved.
-        </p>
-      </motion.footer>
+
+{/* Right Image */}
+<div className="w-1/2 p-8 flex items-start justify-center ml-auto mr-[-50px]">
+  <img 
+    src="/home-image.png" 
+    alt="Bus travel illustration" 
+    className="w-3/4 h-auto object-contain rounded-lg mt-[-20px]"
+  />
+</div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default First;
+export default first;

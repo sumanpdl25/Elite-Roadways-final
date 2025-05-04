@@ -124,7 +124,7 @@ function Mybookings() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
@@ -132,22 +132,19 @@ function Mybookings() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-red-500 text-xl">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+    <div className="min-h-screen bg-white text-black p-8">
+      <div
         className="max-w-6xl mx-auto"
       >
         <h1 className="text-4xl font-bold mb-8 text-center">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
+          <span className="bg-clip-text text-transparent bg-[#4F1C51]">
             My Bookings
           </span>
         </h1>
@@ -164,7 +161,8 @@ function Mybookings() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-xl rounded-xl p-6 border border-white/10"
+                className="bg-white shadow-lg rounded-xl p-6 border border-gray-200"
+
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -172,27 +170,27 @@ function Mybookings() {
                       Bus {booking.busNumber}
                     </h2>
                     <div className="space-y-2">
-                      <p className="text-gray-300">
-                        <span className="text-blue-400">Seat Numbers:</span>{" "}
+                      <p className="text-black">
+                        <span className="text-blue-400 font-semibold">Seat Numbers:</span>{" "}
                         <span className="bg-blue-500/20 px-2 py-1 rounded">
                           {booking.seats.sort().join(", ")}
                         </span>
                       </p>
-                      <p className="text-gray-300">
+                      <p className="text-black font-semibold">
                         <span className="text-blue-400">Route:</span> {booking.route}
                       </p>
-                      <p className="text-gray-300">
+                      <p className="text-black font-semibold">
                         <span className="text-blue-400">Departure:</span> {booking.time}
                       </p>
                     </div>
                   </div>
                   <div>
                     <div className="space-y-2">
-                      <p className="text-gray-300">
-                        <span className="text-blue-400">Fare per seat:</span> NRS {booking.fare}
+                      <p className="text-black">
+                        <span className="text-blue-400 font-semibold">Fare per seat:</span> NRS {booking.fare}
                       </p>
-                      <p className="text-gray-300">
-                        <span className="text-blue-400">Total Fare:</span> NRS {booking.fare * booking.seats.length}
+                      <p className="text-black">
+                        <span className="text-blue-400 font-semibold">Total Fare:</span> NRS {booking.fare * booking.seats.length}
                       </p>
                     </div>
                     <div className="mt-4 space-y-2">
@@ -206,7 +204,7 @@ function Mybookings() {
                               handleCancelBooking(booking.busNumber, seatNumber);
                             }
                           }}
-                          className="w-full bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center justify-between"
+                          className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors duration-200 flex items-center justify-between"
                         >
                           <span>Cancel Seat {seatNumber}</span>
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -221,7 +219,7 @@ function Mybookings() {
             ))}
           </div>
         )}
-      </motion.div>
+      </div>
 
     
       <motion.button

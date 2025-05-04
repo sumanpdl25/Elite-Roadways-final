@@ -62,7 +62,7 @@ function Payment() {
           <input
             type="submit"
             value="Pay with Esewa"
-            className="w-full py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-full text-lg transition duration-300"
+            className="w-full py-3 text-white bg-[#4F1C51] hover:bg-[#210F37] rounded-full text-lg transition duration-300"
           />
         </form>
       </div>

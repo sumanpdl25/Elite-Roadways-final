@@ -10,6 +10,7 @@ function Login() {
         email: '',
         password: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -21,6 +22,10 @@ function Login() {
         }));
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,10 +33,7 @@ function Login() {
             const { data } = await axios.post('/api/v1/users/login', formData);
 
             if (data.success) {
-                // Store the token in localStorage
                 localStorage.setItem('token', data.token);
-                
-                // Store user data if needed
                 localStorage.setItem('user', JSON.stringify(data.user));
 
                 toast.success('Login successful! Redirecting...', {
@@ -39,7 +41,6 @@ function Login() {
                     autoClose: 2000,
                 });
 
-                // Navigate to home after a short delay
                 setTimeout(() => navigate('/home'), 2000);
             } else {
                 toast.error(data.message || 'Login failed. Please try again.');
@@ -54,121 +55,115 @@ function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-center items-center dark:bg-gray-800 relative overflow-hidden">
-        
-            <motion.div 
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="absolute top-0 left-0 w-full h-full z-0"
-            >
-                <img 
-                    src="/bus6.png" 
-                    alt="Bus" 
-                    className="w-full h-full object-cover opacity-60"
-                />
-            </motion.div>
-
-            <div className="text-center p-6 z-10 relative">
-                <motion.h1 
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                        type: "spring", 
-                        stiffness: 100, 
-                        damping: 10,
-                        duration: 1 
-                    }}
-                    className="text-5xl font-extrabold mb-6 text-white drop-shadow-lg tracking-tight"
-                >
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
-                        Welcome Back
-                    </span>
-                </motion.h1>
-                
-                <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 1 }}
-                    className="text-xl mb-8 text-white drop-shadow-md font-light tracking-wide"
-                >
-                    Login to your Elite Roadways account
-                </motion.p>
-
-                <motion.form 
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1, duration: 0.8 }}
-                    onSubmit={handleSubmit} 
-                    className="flex flex-col w-full max-w-sm space-y-5 bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-xl border border-white/20"
-                >
-                    <div className="space-y-2">
-                        <label className="text-left block text-sm font-medium text-white/80 tracking-wide">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
-                        />
+        <div className="w-full h-screen bg-[#F9F9F9] flex items-center justify-center p-4">
+            <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl flex" style={{ height: '75vh' }}>
+                {/* Left Side - Login Form */}
+                <div className="w-1/2 p-12 text-[#2A004E] flex flex-col justify-center">
+                    <div className="max-w-sm mx-auto w-full">
+                        <motion.h1 
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ 
+                                type: "spring", 
+                                stiffness: 100, 
+                                damping: 10,
+                                duration: 1 
+                            }}
+                            className="text-4xl font-bold mb-8 text-center"
+                        >
+                            Welcome Back
+                        </motion.h1>
+                        
+                        <motion.form 
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5, duration: 0.8 }}
+                            onSubmit={handleSubmit} 
+                            className="space-y-6"
+                        >
+                            <div>
+                                <label className="block text-lg font-medium text-gray-700 mb-2">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter your email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6B3FA0] focus:border-transparent"
+                                />
+                            </div>
+                            
+                            <div className="relative">
+                                <label className="block text-lg font-medium text-gray-700 mb-2">Password</label>
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Enter your password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6B3FA0] focus:border-transparent pr-12"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute right-3 top-[42px] text-gray-500 hover:text-[#3d365c]"
+                                >
+                                    {showPassword ? (
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                        </svg>
+                                    ) : (
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
+                            
+                            <motion.button
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.98 }}
+                                type="submit"
+                                className="w-full mt-6 px-6 py-3 rounded-full text-white bg-[#6B3FA0] shadow-sm transition-all duration-200 hover:bg-[#4e2c7a] hover:shadow-md text-lg font-medium"
+                            >
+                                Login
+                            </motion.button>
+                            
+                            <div className="text-center pt-4">
+                                <p className="text-gray-600">
+                                    Don't have an account?{' '}
+                                    <motion.span 
+                                        whileHover={{ color: "#6B3FA0" }}
+                                        onClick={() => navigate('/signup')}
+                                        className="text-[#6B3FA0] font-medium hover:underline cursor-pointer"
+                                    >
+                                        Sign up
+                                    </motion.span>
+                                </p>
+                            </div>
+                        </motion.form>
                     </div>
-                    
-                    <div className="space-y-2">
-                        <label className="text-left block text-sm font-medium text-white/80 tracking-wide">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
-                        />
-                    </div>
-                    
-                    <motion.button
-                        whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)" }}
-                        whileTap={{ scale: 0.98 }}
-                        type="submit"
-                        className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg text-white font-medium transition duration-300 shadow-lg text-lg tracking-wide"
-                    >
-                        Login
-                    </motion.button>
-                    
-                    <motion.p 
+                </div>
+
+                {/* Right Side - Image */}
+                <div className="w-1/2 flex items-center justify-center p-8">
+                    <motion.div 
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5, duration: 1 }}
-                        className="text-sm text-white/70 mt-4"
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="w-full h-full rounded-2xl overflow-hidden"
                     >
-                        Don&apos;t have an account?{' '}
-                        <motion.span 
-                            whileHover={{ color: "rgba(59, 130, 246, 1)" }}
-                            onClick={() => navigate('/signup')}
-                            className="text-blue-400 cursor-pointer hover:underline"
-                        >
-                            Sign up
-                        </motion.span>
-                    </motion.p>
-                </motion.form>
+                        <img 
+                            src="/login.jpg" 
+                            alt="Bus" 
+                            className="w-full h-full object-cover rounded-2xl"
+                        />
+                    </motion.div>
+                </div>
             </div>
-
-            {/* Footer */}
-            <motion.footer 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-6 text-center z-10 w-full"
-            >
-                <p className="text-sm text-white/70 font-light tracking-wide">
-                    © 2024 Elite Roadways. All Rights Reserved.
-                </p>
-            </motion.footer>
-
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/80 z-0"></div>
             
             <ToastContainer />
         </div>

@@ -1,115 +1,43 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const About = () => {
+  const navigate = useNavigate(); // Declare the navigate function
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative">
-      {/* Header */}
-      <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-white/10 backdrop-blur-md"
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
-              Elite Roadways
-            </span>
-          </Link>
-          <nav className="flex space-x-8">
-            <Link to="/" className="text-white/80 hover:text-white transition-colors duration-200">
-              Home
-            </Link>
-          </nav>
-        </div>
-      </motion.header>
+    <div className="w-full h-screen bg-[#F9F9F9] flex items-center justify-center">
+      <div className="w-full max-w-[90rem] h-[90vh] bg-white rounded-3xl shadow-2xl overflow-y-auto px-12 py-10 text-[#2A004E]">
+        <h1 className="text-5xl font-bold mb-6">About Us</h1>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-12"
-        >
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold mb-4">About Elite Roadways</h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Your trusted partner in comfortable and reliable bus travel.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl"
-            >
-              <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
-              <p className="text-white/80">
-                To provide convenient, reliable, and comfortable bus travel experiences 
-                through innovative technology and exceptional customer service.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-              className="bg-white/10 backdrop-blur-md p-8 rounded-xl"
-            >
-              <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-              <p className="text-white/80">
-                To become the leading online bus booking platform, revolutionizing 
-                the way people travel and connect across destinations.
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="bg-white/10 backdrop-blur-md p-8 rounded-xl"
-          >
-            <h2 className="text-2xl font-bold mb-6">Our Values</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Customer First</h3>
-                <p className="text-white/80">
-                  We prioritize our customers' needs and satisfaction above all else.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Innovation</h3>
-                <p className="text-white/80">
-                  We continuously improve our services through technological advancement.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Reliability</h3>
-                <p className="text-white/80">
-                  We ensure dependable service and maintain high standards of quality.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Footer */}
-      <motion.footer 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-6 text-center z-10 w-full"
-      >
-        <p className="text-sm text-white/70 font-light tracking-wide">
-          © 2024 Elite Roadways. All Rights Reserved.
+        <p className="text-lg text-gray-600 mb-6">
+          At Elite Roadways, we’re redefining how you travel. Our platform offers
+          a seamless and secure ticket booking experience designed to put you in control.
         </p>
-      </motion.footer>
+
+        <ul className="list-disc text-gray-700 pl-6 space-y-3 mb-6">
+          <li><strong>User-friendly:</strong> Easy for all age groups.</li>
+          <li><strong>Quick booking:</strong> Reserve tickets in just a few clicks.</li>
+          <li><strong>Secure payments:</strong> Your safety is our priority.</li>
+          <li><strong>Reliable rides:</strong> Punctual, comfy, and safe travel.</li>
+          <li><strong>Anytime access:</strong> Book or change plans whenever needed.</li>
+          <li><strong>24/7 Support:</strong> Our customer service is available around the clock to assist you.</li>
+          <li><strong>Multiple Payment Options:</strong> We support a variety of payment methods, making it easy for you.</li>
+        </ul>
+
+        <p className="text-md text-gray-600 mb-10">
+          Join us and experience a smarter, smoother way to travel.
+        </p>
+
+        {/* Back Button */}
+        <div className="flex justify-end mt-16">
+          <button
+            onClick={() => navigate('/')} // Navigate to the home page (or any other route)
+            className="px-6 py-3 rounded-full text-white bg-[#6B3FA0] shadow-sm transition-all duration-200 hover:bg-[#4e2c7a] hover:shadow-md"
+          >
+            &larr; Go Back
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

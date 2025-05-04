@@ -159,106 +159,76 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center dark:bg-gray-800 relative overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
+      <div
         className="absolute top-0 left-0 w-full h-full z-0"
       >
-        <img
-          src="/bus1.jpg"
-          alt="Bus"
-          className="w-full h-full object-cover opacity-60"
-        />
-      </motion.div>
+      </div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900/80 z-0"></div>
+      <div className="absolute inset-0 bg-white"></div>
 
       <div className="w-full max-w-6xl p-6 z-10 relative">
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 10,
-            duration: 1,
-          }}
+        <div
           className="flex justify-between items-center mb-8 gap-x-4"
         >
-          <h1 className="text-4xl font-extrabold text-white drop-shadow-lg tracking-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
-              Elite Roadways
-            </span>
-          </h1>
-
+<img
+  src="/logo.jpg"
+  alt="Elite Roadways Logo"
+  className="h-24"
+/>
           <div className="flex items-center gap-4">
             {isAdmin && (
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
-                }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 onClick={() => navigate('/userdetails')}
-                className="px-6 py-2 bg-white/10 backdrop-blur-md text-white font-medium rounded-lg shadow-lg hover:bg-white/20 transition duration-300 border border-white/20"
+                className="px-6 py-2 bg-[#7c4585] backdrop-blur-md text-white font-medium rounded-lg shadow-lg hover:bg-[#3d365c] transition duration-300 border border-white/20"
               >
                 User Details
-              </motion.button>
+              </button>
             )}
-            <motion.button
+            <button
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
               }}
               whileTap={{ scale: 0.98 }}
               onClick={handleProfileClick}
-              className="px-6 py-2 bg-white/10 backdrop-blur-md text-white font-medium rounded-lg shadow-lg hover:bg-white/20 transition duration-300 border border-white/20"
-            >
+              className="px-6 py-2 bg-[#7c4585] backdrop-blur-md text-white font-medium rounded-lg shadow-lg hover:bg-[#3d365c] transition duration-300 border border-white/20"
+              >
               My Profile
-            </motion.button>
-            <motion.button
+            </button>
+            <button
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
               }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate('/mybookings')}
-              className="px-6 py-2 bg-white/10 backdrop-blur-md text-white font-medium rounded-lg shadow-lg hover:bg-white/20 transition duration-300 border border-white/20"
-            >
+              className="px-6 py-2 bg-[#7c4585] backdrop-blur-md text-white font-medium rounded-lg shadow-lg hover:bg-[#3d365c] transition duration-300 border border-white/20"
+              >
               My Bookings
-            </motion.button>
+            </button>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+        <div
           className="flex justify-center mb-8"
         >
           {isAdmin && (
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 10px 25px -5px rgba(16, 185, 129, 0.5)",
-              }}
-              whileTap={{ scale: 0.98 }}
+            <button
               onClick={handleAddBus}
-              className="px-8 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-lg text-white font-medium transition duration-300 shadow-lg text-lg tracking-wide"
+              className="px-8 py-3 bg-[#7c4585] hover:bg-[#3d365c] rounded-lg text-white font-medium"
             >
               Add Bus
-            </motion.button>
+            </button>
           )}
-        </motion.div>
+        </div>
 
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
           className="bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-xl border border-white/20 mb-8"
         >
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">
+          <h2 className="text-2xl font-bold text-black mb-6 text-center">
             Search for Buses
           </h2>
           <form
@@ -271,32 +241,30 @@ function Home() {
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
                 placeholder="Enter destination"
-                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
+                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-black text-black placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
               />
             </div>
-            <motion.button
+            <button
               whileHover={{
                 scale: 1.03,
                 boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
               }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg text-white font-medium transition duration-300 shadow-lg text-lg tracking-wide disabled:opacity-70 disabled:cursor-not-allowed"
+              className="px-8 py-3 bg-[#7c4585] hover:bg-[#3d365c] rounded-lg text-white font-medium disabled:cursor-not-allowed"
+
               disabled={loading}
             >
               {loading ? "Searching..." : "Search"}
-            </motion.button>
+            </button>
           </form>
-        </motion.div>
+        </div>
 
         {buses.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
             className="space-y-4"
           >
-            <h3 className="text-2xl font-bold text-white text-center mb-6">
+            <h3 className="text-2xl font-bold text-black text-center mb-6">
               Available Buses
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -311,10 +279,10 @@ function Home() {
                   onClick={() => handleBusClick(bus)}
                   className="cursor-pointer bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-xl border border-white/20 hover:bg-white/20 transition duration-300"
                 >
-                  <h4 className="text-xl font-semibold text-white mb-2">
+                  <h4 className="text-xl font-semibold text-black mb-2">
                     Bus Number: {bus.busnum}
                   </h4>
-                  <div className="space-y-2 text-white/80">
+                  <div className="space-y-2 text-black">
                     <p className="flex items-center">
                       <span className="w-24 font-medium">Seats Available:</span>
                       <span className="ml-2">
@@ -342,18 +310,6 @@ function Home() {
           </motion.div>
         )}
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-6 text-center z-10 w-full"
-      >
-        <p className="text-sm text-white/70 font-light tracking-wide">
-          © 2024 Elite Roadways. All Rights Reserved.
-        </p>
-      </motion.div>
-
       <ToastContainer
         position="top-center"
         autoClose={3000}
